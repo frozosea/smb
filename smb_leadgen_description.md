@@ -1267,13 +1267,37 @@ for chunk in completion:
     "model": "text-embedding-3-large",
     "vector": null             // можно не передавать: пусть твой сервис сам считает
   },
+  {
+  "icp": {
+    "market": "global",                 // рынок/регион (us, eu, apac, smb, enterprise…)
+    "profile": "logistics_smb",         // конкретный ICP-профиль внутри рынка
+    "version": "icp-2025-01",           // версия набора правил/центроидов
+    "candidate_labels": ["supply_chain_platform","ai_tooling"]  // (опц.) ограничить классы
+  },
+
   "rule_features": {
     "has_logistics_keywords": true,
     "has_ai_keywords": true,
     "is_b2b": true,
     "content_enough_len": true,
-    "domain_matches_brand": true
+    "domain_matches_brand": true,
+
+    "followers": 120000,                // можно передавать «сырой» сигнал…
+    "employees_in_linkedin": 1800       // …а биннинг сделаем на бэке по правилам ICP
   },
+
+  "rule_overrides": {                   // (опционально) одноразовые переопределения под конкретный вызов
+    "weights": {                        // веса признаков: затрагивает только указанные ключи
+      "has_logistics_keywords": 0.15,
+      "is_b2b": 0.10
+    },
+    "thresholds": {                     // локальные пороги для биннинга
+      "followers_gt": 50000,
+      "employees_gt": 500
+    },
+    "mixing": { "alpha": 0.7, "beta": 0.3 }   // как смешивать cosine и rules
+  }
+},
   "raw": {
     "google": { "...": "можно положить сырой json страницы/органики (усечённый)" },
     "linkedin": { "...": "сырой объект с основными полями (усечённый)" },
