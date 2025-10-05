@@ -8,11 +8,6 @@
 **Поля (ядро):** `company{ id,name,website,domain,linkedin_url,industry,country_code,about,size_label,location,logo,extra }, embeddings{ model,vector[],text }, contacts[ { id,full_name,first_name,last_name,job_title,email,phone_number,location,seniority,departments[],linkedin_url,linkedin_profile_picture,linkedin_profile_description,skills[],experience[] } ]`. 
 
 ---
-## 0.1) Прокладка под brightData
-
-brightData работает по схеме создания запроса затем notify 
-
----
 ## 1) Google SERP (Bright Data)
 
 **Назначение.** Получить до N результатов по запросу (компании/сайты) из Google с гео и языком, минуя капчи/парсинг.
@@ -1225,10 +1220,13 @@ for chunk in completion:
 **Input**:
 
 ```json
+
+
 {
-  "idempotency_key": "string",             // для дедупа (hash от домена+имени+даты)
+  "idempotency_key": "hash(project44.com|2025-10-02)",
   "fetched_at": "2025-10-02T06:20:00Z",
   "primary_domain": "project44.com",
+
   "company": {
     "name": "project44",
     "country_code": "US",
@@ -1236,6 +1234,7 @@ for chunk in completion:
     "linkedin_url": "https://www.linkedin.com/company/project-44/",
     "language": "en"
   },
+
   "signals": {
     "website": {
       "title": "Movement. The Decision Intelligence Platform...",
@@ -1262,45 +1261,44 @@ for chunk in completion:
       "related": ["supply chain visibility", "real time tracking"]
     }
   },
+
   "embedding": {
-    "text": "<склеенный текст для эмбеддинга: title + H1..H3 + about + 2-3 organic descriptions>",
+    "text": "title + H1..H3 + LI about + 2-3 organic descriptions",
     "model": "text-embedding-3-large",
-    "vector": null             // можно не передавать: пусть твой сервис сам считает
+    "vector": null
   },
-  {
+
   "icp": {
-    "market": "global",                 // рынок/регион (us, eu, apac, smb, enterprise…)
-    "profile": "logistics_smb",         // конкретный ICP-профиль внутри рынка
-    "version": "icp-2025-01",           // версия набора правил/центроидов
-    "candidate_labels": ["supply_chain_platform","ai_tooling"]  // (опц.) ограничить классы
+    "icp_id": "global.logistics_smb",
+    "title": "Logistics — SMB",
+    "market": "global",
+
+    "include": {
+      "industries": ["Logistics", "Supply Chain", "Transportation"],
+      "countries": ["US", "GB", "DE"],
+      "size_band": [{"50":"1000"}],
+      "keywords": ["visibility", "tracking", "supply chain"],
+      "ban_words": ["porn", "tabacco"],
+      "description": "We need company with size 1,2,3 etc."
+    },
+
+    "scoring": {
+      "embedding_model": "bge-m3",
+      "alpha": 0.7,
+      "beta": 0.3,
+      "candidate_labels": ["supply_chain_platform", "ai_analytics_for_logistics", "not_a_fit"]
+    }
   },
 
-  "rule_features": {
-    "has_logistics_keywords": true,
-    "has_ai_keywords": true,
-    "is_b2b": true,
-    "content_enough_len": true,
-    "domain_matches_brand": true,
-
-    "followers": 120000,                // можно передавать «сырой» сигнал…
-    "employees_in_linkedin": 1800       // …а биннинг сделаем на бэке по правилам ICP
+  "rules":{
+   "include_words": ["word1"],
+   "exclude_words": ["word2"],
+   "employees_in_linkedin": {"min": 1800, "max": 5000}, //optional
   },
 
-  "rule_overrides": {                   // (опционально) одноразовые переопределения под конкретный вызов
-    "weights": {                        // веса признаков: затрагивает только указанные ключи
-      "has_logistics_keywords": 0.15,
-      "is_b2b": 0.10
-    },
-    "thresholds": {                     // локальные пороги для биннинга
-      "followers_gt": 50000,
-      "employees_gt": 500
-    },
-    "mixing": { "alpha": 0.7, "beta": 0.3 }   // как смешивать cosine и rules
-  }
-},
   "raw": {
-    "google": { "...": "можно положить сырой json страницы/органики (усечённый)" },
-    "linkedin": { "...": "сырой объект с основными полями (усечённый)" },
+    "google": { "…": "усечённый сырой json" },
+    "linkedin": { "…": "усечённый сырой объект" },
     "website": {
       "cleaner_version": "llm:v1",
       "raw_content_sample": "часть raw для аудита"
@@ -1357,4 +1355,3 @@ for chunk in completion:
   "version": "classifier:v2"
 }
 ```
-
