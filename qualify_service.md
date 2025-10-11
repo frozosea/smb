@@ -124,49 +124,122 @@
 
 ```json
 {
-  "company_id": "hash(project44.com|project44)",
-  "name": "project44",
-  "primary_domain": "project44.com",
-  "industry": "Logistics / Supply Chain",
-  "classification": {
-    "label": "supply_chain_platform",
-    "confidence": 0.91,
-    "method": "rule+embedding+llm",
-    "explanation": "Detected keywords: 'visibility', 'supply chain AI'"
-  },
-  "fingerprint": {
-    "top_terms": [
-      {"term": "visibility", "score": 0.85},
-      {"term": "supply chain", "score": 0.82},
-      {"term": "logistics", "score": 0.77},
-      {"term": "ai disruption", "score": 0.62},
-      {"term": "decision intelligence", "score": 0.59}
-    ],
-    "distinctive_terms": [
-      {"term": "tariff analytics", "delta": 0.45},
-      {"term": "yard automation", "delta": 0.41},
-      {"term": "port intel", "delta": 0.36}
-    ],
-    "assigned_tags": [
-      "Logistics",
-      "Visibility",
-      "AI/Analytics"
-    ]
-  },
-  "signals": {
-    "followers": 120000,
-    "employees_in_linkedin": 1800,
-    "content_score": 0.82,
-    "language": "en"
-  },
-  "embedding": {
-    "model": "text-embedding-3-large",
-    "vector": null
-  },
-  "company": "same as input data",
-  "timestamp": "2025-10-02T07:30:00Z",
-  "version": "classifier:v2"
-}
+    "idempotency_key": "6fd004fb",
+    "fetched_at": "2025-10-08T14:50:04.010Z",
+    "primary_domain": "brdta.com",
+    "company": {
+      "name": "Bright Data",
+      "country_code": "IL",
+      "language": "en"
+    },
+    "classification": {
+      "label": "web_data_platform",
+      "confidence": 0.9,
+      "method": "rule+embedding+llm",
+      "explanation": "Detected keywords: 'proxies', 'web scraping', 'datasets', 'SERP API', 'AI data'"
+    },
+    "fingerprint": {
+      "top_terms": [
+        {
+          "term": "web scraping",
+          "score": 0.88
+        },
+        {
+          "term": "proxies",
+          "score": 0.86
+        },
+        {
+          "term": "datasets",
+          "score": 0.81
+        },
+        {
+          "term": "SERP API",
+          "score": 0.74
+        },
+        {
+          "term": "AI data",
+          "score": 0.69
+        }
+      ],
+      "distinctive_terms": [
+        {
+          "term": "MCP Server",
+          "delta": 0.47
+        },
+        {
+          "term": "residential proxies",
+          "delta": 0.44
+        },
+        {
+          "term": "150M+ IPs",
+          "delta": 0.39
+        }
+      ],
+      "assigned_tags": [
+        "Web Data",
+        "Proxies",
+        "AI/Agents"
+      ]
+    },
+    "signals": {
+      "website": {
+        "title": "Data Feeds",
+        "content_markdown": "",
+        "headings": [
+          {
+            "level": 3,
+            "text": "Data Feeds"
+          },
+          {
+            "level": 3,
+            "text": "Web Access APIs"
+          },
+          {
+            "level": 3,
+            "text": "Proxy Infrastructure"
+          },
+          {
+            "level": 3,
+            "text": "Ready to get started?"
+          }
+        ],
+        "metrics": {
+          "char_len": 26327,
+          "link_ratio": 0.11046269278866194,
+          "estimated_read_time_sec": 720
+        }
+      },
+      "linkedin": {
+        "id": "bright-data",
+        "followers": 37703,
+        "employees_in_linkedin": 280,
+        "about": "",
+        "industries": "Software Development",
+        "company_size": "201-500 employees",
+        "headquarters": "Greater Tel Aviv, Israel"
+      }
+    },
+    "embedding": {
+      "text": "Data Feeds \nData Feeds | Web Access APIs | Proxy Infrastructure | Ready to get started? \nBright Data is the leading web data infrastructure powering AI and BI, trusted by over 20,000 companies - from top AI innovators to global leaders in eCommerce, financial services, market research, cybersecurity, travel, martech, and beyond. Our platform enables teams to seamlessly discover, access, extract, and interact with web data at unmatched scale, speed, and accuracy - including global proxy networks, automated web unlocking, advanced browsing technology, and ready-to-ingest petabyte-scale datasets.",
+      "model": "text-embedding-3-large"
+    },
+    "raw": {
+      "linkedin": {
+        "id": "bright-data",
+        "url": "https://www.linkedin.com/company/bright-data/",
+        "followers": 37703,
+        "employees_in_linkedin": 280,
+        "about": "Bright Data is the leading web data infrastructure powering AI and BI, trusted by over 20,000 companies - from top AI innovators to global leaders in eCommerce, financial services, market research, cybersecurity, travel, martech, and beyond. Our platform enables teams to seamlessly discover, access, extract, and interact with web data at unmatched scale, speed, and accuracy - including global proxy networks, automated web unlocking, advanced browsing technology, and ready-to-ingest petabyte-scale datasets.",
+        "industries": "Software Development",
+        "company_size": "201-500 employees",
+        "headquarters": "Greater Tel Aviv, Israel"
+      },
+      "website": {
+        "cleaner_version": "llm:v1",
+        "raw_content_sample": "Bright Data - All in One Platform for Proxies and Web Scraping\n\n===============\n\n![Image 1: Spinner: White decorative](https://cdn.userway.org/widgetapp/images/spin_wh.svg)\n\n![Image 2](https://cdn.userway.org/widgetapp/images/body_wh.svg)\n\n![Image 3: Spinner: White decorative](https://cdn.userway.org/widgetapp/images/spin_wh.svg)\n\n[Accessibility Menu](https://brdta.com/3go77R5#)[skip to content](https://brdta.com/3go77R5#site-content)\n\n[](https://brdta.com/)\n\n[en](https://brdta.com/3go77R5#lang_popup)\n\n*   [![Image 4](blob:http://localhost/caccea78bb2c63a5732372d2bf05681e)Français](https://brightdata.fr/)\n*   [![Image 6](blob:http://localhost/caccea78bb2c63a5732372d2bf05681e)日本語](https://brightdata.jp/)\n*   [![Image 8](blob:http://localhost/caccea78bb2c63a5732372d2bf05681e)Português](https://brightdata.com.br/)\n*   [![Image 10](blob:http://localhost/caccea78bb2c63a5732372d2bf05681e)Русский](https://ru-brightdata.com/)\n*   [![Image 12](blob:http://localhost/caccea78bb2c63a5732372d2bf056…"
+      }
+    }
+  }
 ```
 ---
 
